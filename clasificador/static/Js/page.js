@@ -290,7 +290,7 @@ async function guardarPlanta(e) {
     formData.append('familia', currentPlantData.familia || '');
     formData.append('descripcion', currentPlantData.descripcion || '');
     formData.append('imagen_url', currentPlantData.imagen || '');
-
+    
     // ID del ejemplar (para actualizar existente)
     const plantaId = document.getElementById('plantaIdActualizar').value;
     if (plantaId) {
@@ -304,6 +304,8 @@ async function guardarPlanta(e) {
     formData.append('porcentaje_rojo', currentPlantData.porcentaje_rojo);
     formData.append('estado', currentPlantData.estado);
     formData.append('descripcion_estado', currentPlantData.descripcion_estado);
+    
+    
 
     try {
         const response = await fetch(window.GUARDAR_PLANTA_URL, {

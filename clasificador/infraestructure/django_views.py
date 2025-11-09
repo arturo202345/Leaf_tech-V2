@@ -26,7 +26,7 @@ last_color_analysis = {
 def generate_video():
     """Genera el stream de video con detección y análisis en tiempo real"""
     global last_result, last_color_analysis
-    cap = cv2.VideoCapture("http://192.168.100.99:8080/video", cv2.CAP_FFMPEG)
+    cap = cv2.VideoCapture(0)
     # cap = cv2.VideoCapture(0)
     frame_count = 0
 
@@ -109,8 +109,11 @@ def generate_video():
             # Color del contorno según la confianza
             if result["prob"] < 0.85:
                 color = (0, 255, 255)  # amarillo = baja confianza
+                cv2.drawContours(frame, [c], -1, color, 2)
+                continue  # No analizar color
             else:
-                color = (0, 255, 0)  # verde = alta confianza
+                color = (0, 255, 0)
+                cv2.drawContours(frame, [c], -1, color, 4)
 
             # Dibujar solo el contorno con grosor aumentado
             cv2.drawContours(frame, [c], -1, color, 4)
@@ -133,11 +136,18 @@ def video_feed(request):
 def get_last_result(request):
     """Retorna el último resultado de clasificación"""
     global last_result
-    safe_result = {
-        "label": str(last_result.get("label", "Detectando...")),
-        "prob": float(last_result.get("prob", 0.0))
-    }
-    return JsonResponse(safe_result)
+
+    label = str(last_result.get("label", "Detectando..."))
+    prob = float(last_result.get("prob", 0.0))
+
+    # Si el modelo detecta "no_planta", no se devuelve contenido
+    if label == "no_planta":
+        return JsonResponse({}, status=204)  # 204 = No Content
+
+    return JsonResponse({
+        "label": label,
+        "prob": prob
+    })
 
 
 def index(request):
@@ -190,18 +200,7 @@ def get_plant_data(request):
 
     # CASO 2: no_planta detectado (especie no catalogada)
     if label.lower() == "no_planta":
-        data = {
-            **base_data,
-            "label": "no_planta",
-            "nombre_cientifico": "-",
-            "familia": "-",
-            "descripcion": "Especie detectada pero no está en el catálogo.",
-            "imagen": "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=280&h=320&fit=crop",
-            "referencia": "https://es.wikipedia.org/wiki/Planta",
-            "mis_ejemplares": [],
-            "tiene_ejemplares": False
-        }
-        return JsonResponse(data)
+        return JsonResponse({}, status=204)
 
     # CASO 3: Buscar especie en el catálogo
     try:

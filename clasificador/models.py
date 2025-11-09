@@ -131,7 +131,7 @@ class MonitoreoPlanta(models.Model):
         null=True,
         help_text="Tus observaciones en este monitoreo"
     )
-    foto_url = models.URLField(blank=True, null=True)
+    foto = models.ImageField(upload_to='monitoreos/', blank=True, null=True)
 
     # Metadata
     fecha_monitoreo = models.DateTimeField(auto_now_add=True)

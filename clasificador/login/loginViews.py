@@ -1,34 +1,41 @@
+from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+    first_name = forms.CharField(label="Nombre", required=False)
+    last_name = forms.CharField(label="Apellido", required=False)
+
+    class Meta:
+        model = User
+        fields = ("username", "first_name", "last_name", "email", "password1", "password2")
+
 def signup(request):
     if request.method == 'GET':
         return render(request, 'clasificador/login/signup.html', {
-            'form': UserCreationForm()
+            'form': CustomUserCreationForm()
         })
     else:
-        if request.POST['password1'] == request.POST['password2']:
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
             try:
-                user = User.objects.create_user(
-                    username=request.POST['username'],
-                    password=request.POST['password1']
-                )
-                user.save()
+                user = form.save()
                 login(request, user)
                 return redirect('index')
             except IntegrityError:
                 return render(request, 'clasificador/login/signup.html', {
-                    'form': UserCreationForm(),
+                    'form': form,
                     'error': 'El nombre de usuario ya está en uso.'
                 })
-
-        return render(request, 'clasificador/login/signup.html', {
-            'form': UserCreationForm(),
-            'error': 'Las contraseñas no coinciden.'
-        })
+        else:
+            return render(request, 'clasificador/login/signup.html', {
+                'form': form,
+                'error': 'Por favor corrige los errores del formulario.'
+            })
 
 def signin(request):
     if request.method == "GET":

@@ -206,6 +206,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 15px;
+    text-decoration: none;
 }
 
 .porque-right {
