@@ -10,7 +10,11 @@ function abrirModalNotas(monitoreoId) {
 function cerrarModalNotas() {
     document.getElementById('modalNotas').style.display = 'none';
 }
-
+function confirmarEliminar() {
+    if (confirm('¿Estás seguro de que deseas eliminar este ejemplar? Esta acción no se puede deshacer.')) {
+        window.location.href = "{% url 'eliminar_planta' planta.id %}";
+    }
+}
 const btnGrabar = document.getElementById('btnGrabar');
 const btnDetener = document.getElementById('btnDetener');
 const grabacionEstado = document.getElementById('grabacionEstado');
