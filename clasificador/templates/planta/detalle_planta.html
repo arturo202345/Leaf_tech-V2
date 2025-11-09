@@ -4,15 +4,17 @@
     <link rel="stylesheet" href="{% static 'css/detalle.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/modal.css' %}">
+    
 
 <div class="detalle-container">
     <!-- Encabezado -->
     <div class="detalle-header">
         <a href="{% url 'mis_plantas' %}" class="btn-back">← Volver a Mi Colección</a>
         <h1>{{ planta.especie.nombre }} #{{ planta.id }}</h1>
-        <div class="actions">
-            <button class="btn-delete" onclick="confirmarEliminar()">🗑️ Eliminar</button>
-        </div>
+        <!-- CAMBIADO: ahora redirige a la página de confirmar eliminación -->
+        <a href="{% url 'eliminar_planta' planta.id %}" class="btn-delete">
+            🗑️ Eliminar
+        </a>
     </div>
 
     <!-- Información principal -->
@@ -258,7 +260,6 @@
   </div>
 </div>
     
-
 <script src="{% static 'Js/detalle.js' %}"></script>
 
 {% endblock content %}

@@ -8,7 +8,7 @@ from clasificador.domain.color_analizer import ColorAnalyzer
 from clasificador.models import EspeciePlanta
 from django.core.exceptions import ObjectDoesNotExist
 
-classifier_service = TensorflowPlantClassifier("modelo_plantas_cnn_v4.h5", "labels_v4.pkl")
+classifier_service = TensorflowPlantClassifier("modelo_plantas_cnn_v5.h5", "labels_v5.pkl")
 usecase = ClassifyPlantUseCase(classifier_service)
 color_analyzer = ColorAnalyzer()
 
@@ -26,7 +26,8 @@ last_color_analysis = {
 def generate_video():
     """Genera el stream de video con detección y análisis en tiempo real"""
     global last_result, last_color_analysis
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture("http://192.168.100.99:8080/video", cv2.CAP_FFMPEG)
+    # cap = cv2.VideoCapture(0)
     frame_count = 0
 
     while True:

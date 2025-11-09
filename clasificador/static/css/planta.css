@@ -27,19 +27,46 @@ h1 {
     flex-wrap: wrap;
 }
 
+/* Contenedor de búsqueda */
+.search-container {
+    position: relative;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.search-icon {
+    position: absolute;
+    left: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Barra de búsqueda */
 .search-bar {
     width: 100%;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 25px;
+    padding: 18px 25px 18px 60px;
+    border: 2px solid #ddd;
+    border-radius: 30px;
     background-color: #fff;
-    margin-bottom: 30px;
-    font-size: 14px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
 }
 
 .search-bar::placeholder {
     color: #999;
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
 }
 
 /* Estadísticas */
@@ -214,5 +241,9 @@ h1 {
     .capture-btn {
         width: 100%;
         text-align: center;
+    }
+    
+    .search-container {
+        max-width: 100%;
     }
 }
