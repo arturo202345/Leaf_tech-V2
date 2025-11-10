@@ -290,7 +290,7 @@ async function guardarPlanta(e) {
     formData.append('familia', currentPlantData.familia || '');
     formData.append('descripcion', currentPlantData.descripcion || '');
     formData.append('imagen_url', currentPlantData.imagen || '');
-    
+
     // ID del ejemplar (para actualizar existente)
     const plantaId = document.getElementById('plantaIdActualizar').value;
     if (plantaId) {
@@ -304,15 +304,29 @@ async function guardarPlanta(e) {
     formData.append('porcentaje_rojo', currentPlantData.porcentaje_rojo);
     formData.append('estado', currentPlantData.estado);
     formData.append('descripcion_estado', currentPlantData.descripcion_estado);
-    
-    
+
+    // ✅ Capturar frame actual del video
+    try {
+        const video = document.getElementById('videoStream');
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = video.width || 640;
+        canvas.height = video.height || 480;
+
+        // Dibujar el frame actual en el canvas
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // Convertir a Blob (JPEG) y agregar al FormData
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
+        formData.append('foto', blob, 'captura.jpg');
+    } catch (err) {
+        console.warn('⚠️ No se pudo capturar el frame:', err);
+    }
 
     try {
         const response = await fetch(window.GUARDAR_PLANTA_URL, {
             method: 'POST',
-            headers: {
-                'X-CSRFToken': getCSRFToken()
-            },
+            headers: { 'X-CSRFToken': getCSRFToken() },
             body: formData
         });
 
@@ -332,6 +346,8 @@ async function guardarPlanta(e) {
         btn.textContent = textoOriginal;
     }
 }
+
+
 
 // ============================================
 // CONTROL DE CÁMARA

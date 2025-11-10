@@ -1,0 +1,158 @@
+<!-- Modal de Contacto -->
+<div id="modalContacto" class="modal">
+    <div class="modal-content" style="max-width: 500px;">
+        <div class="modal-header" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+            <h2 style="margin: 0; display: flex; align-items: center; gap: 10px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                ¿Planta No Identificada?
+            </h2>
+            <span class="close-contacto" style="cursor: pointer; font-size: 28px; font-weight: bold; color: white; line-height: 1;">&times;</span>
+        </div>
+        
+        <div class="modal-body" style="padding: 30px 25px;">
+            <!-- Ícono informativo -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5" style="display: inline-block;">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 16v-4"/>
+                    <path d="M12 8h.01"/>
+                </svg>
+            </div>
+
+            <!-- Mensaje principal -->
+            <div style="text-align: center; margin-bottom: 25px;">
+                <h3 style="color: #1f2937; margin-bottom: 12px; font-size: 20px;">
+                    🌿 ¡Tu ayuda es valiosa!
+                </h3>
+                <p style="color: #6b7280; line-height: 1.6; font-size: 15px;">
+                    Si nuestro sistema no logró identificar tu planta, nos encantaría mejorar. 
+                    Envíanos los detalles de la planta.
+                </p>
+            </div>
+
+            <!-- Instrucciones -->
+            <div style="background: #f3f4f6; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                <h4 style="color: #374151; margin-bottom: 15px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    Por favor incluye:
+                </h4>
+                <ul style="list-style: none; padding: 0; margin: 0; color: #4b5563; font-size: 14px;">
+                    <li style="padding: 8px 0; display: flex; align-items: start;">
+                        <span style="color: #10b981; margin-right: 10px; font-weight: bold;">✓</span>
+                        <span>Una foto clara de la planta</span>
+                    </li>
+                    <li style="padding: 8px 0; display: flex; align-items: start;">
+                        <span style="color: #10b981; margin-right: 10px; font-weight: bold;">✓</span>
+                        <span>Cualquier información adicional que conozcas</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Información de contacto -->
+            <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); padding: 20px; border-radius: 10px; border: 2px solid #10b981; margin-bottom: 20px;">
+                <h4 style="color: #065f46; margin-bottom: 12px; font-size: 16px; text-align: center;">
+                    📧 Contáctanos
+                </h4>
+                <div style="text-align: center;">
+                    <a href="mailto:leaftech141@gmail.com?subject=Planta%20No%20Identificada%20-%20LeafTech&body=Hola%20equipo%20de%20LeafTech%2C%0A%0AQuisiera%20reportar%20una%20planta%20que%20no%20fue%20identificada%20por%20el%20sistema.%0A%0A%5BAdjuntar%20fotos%20de%20la%20planta%5D%0A%0ADetalles%3A%0A-%20Ubicaci%C3%B3n%3A%20%0A-%20Caracter%C3%ADsticas%3A%20%0A-%20Informaci%C3%B3n%20adicional%3A%20%0A%0AGracias%21" 
+                       style="color: #059669; font-size: 18px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.3s;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        leaftech141@gmail.com
+                    </a>
+                </div>
+                <p style="text-align: center; color: #047857; font-size: 13px; margin-top: 12px; margin-bottom: 0;">
+                    Haz clic para enviar un correo con plantilla
+                </p>
+            </div>
+
+            <!-- Nota adicional -->
+            <div style="text-align: center; color: #6b7280; font-size: 13px; line-height: 1.5;">
+                <p style="margin: 0;">
+                    💚 Tu colaboración nos ayuda a mejorar nuestro sistema de identificación y crear una base de datos más completa.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Estilos para el modal de contacto */
+#modalContacto .modal-content {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#modalContacto .modal-body a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #modalContacto .modal-content {
+        max-width: 95% !important;
+        margin: 20px auto;
+    }
+    
+    #modalContacto .modal-body {
+        padding: 20px 15px !important;
+    }
+}
+</style>
+
+<script>
+// Script para controlar el modal de contacto
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modalContacto');
+    const btn = document.getElementById('contactoBtn');
+    const closeBtn = document.querySelector('.close-contacto');
+
+    // Abrir modal
+    if (btn) {
+        btn.addEventListener('click', function() {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // Cerrar modal con X
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    // Cerrar modal al hacer clic fuera
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Cerrar con tecla ESC
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
+</script>

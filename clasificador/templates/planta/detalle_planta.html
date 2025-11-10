@@ -10,7 +10,7 @@
     <!-- Encabezado -->
     <div class="detalle-header">
         <a href="{% url 'mis_plantas' %}" class="btn-back">← Volver a Mi Colección</a>
-        <h1>{{ planta.especie.nombre }} #{{ planta.id }}</h1>
+        <h1>{{ planta.especie.nombre }}</h1>
         <!-- CAMBIADO: ahora redirige a la página de confirmar eliminación -->
         <a href="{% url 'eliminar_planta' planta.id %}" class="btn-delete">
             🗑️ Eliminar
@@ -161,7 +161,81 @@
             {% endif %}
         </div>
     </div>
+    
+    <div class="card card-consejos">
+        <h2>🌱 Guía de Cuidados</h2>
+        
+        <div class="consejos-header">
+            <div class="badge-info">
+                <span class="badge-dificultad badge-{{ consejos.dificultad }}">
+                    {% if consejos.dificultad == 'facil' %}😊 Fácil
+                    {% elif consejos.dificultad == 'moderada' %}🤔 Moderada
+                    {% else %}😰 Difícil{% endif %}
+                </span>
+            </div>
+            <div class="badge-info">
+                <span class="badge-toxicidad badge-{{ consejos.toxicidad }}">
+                    {% if consejos.toxicidad == 'no_toxica' %}✓ No tóxica
+                    {% elif consejos.toxicidad == 'toxica_leve' %}⚠ Levemente tóxica
+                    {% elif consejos.toxicidad == 'toxica' %}⚠️ Tóxica
+                    {% else %}☠️ Muy tóxica{% endif %}
+                </span>
+            </div>
+        </div>
 
+        <div class="consejos-grid">
+            <div class="consejo-item">
+                <h3>☀️ Luz</h3>
+                <p>{{ consejos.luz }}</p>
+            </div>
+
+            <div class="consejo-item">
+                <h3>💧 Riego</h3>
+                <p>{{ consejos.riego }}</p>
+            </div>
+
+            <div class="consejo-item">
+                <h3>🌡️ Temperatura</h3>
+                <p>{{ consejos.temperatura }}</p>
+            </div>
+
+            <div class="consejo-item">
+                <h3>💨 Humedad</h3>
+                <p>{{ consejos.humedad }}</p>
+            </div>
+
+            <div class="consejo-item">
+                <h3>🪴 Suelo</h3>
+                <p>{{ consejos.suelo }}</p>
+            </div>
+
+            <div class="consejo-item">
+                <h3>🌿 Fertilización</h3>
+                <p>{{ consejos.fertilizacion }}</p>
+            </div>
+
+            {% if consejos.poda %}
+            <div class="consejo-item">
+                <h3>✂️ Poda</h3>
+                <p>{{ consejos.poda }}</p>
+            </div>
+            {% endif %}
+
+            {% if consejos.plagas_comunes %}
+            <div class="consejo-item">
+                <h3>🐛 Plagas Comunes</h3>
+                <p>{{ consejos.plagas_comunes }}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        {% if consejos.notas_adicionales %}
+        <div class="notas-adicionales">
+            <h3>📝 Notas Adicionales</h3>
+            <p>{{ consejos.notas_adicionales }}</p>
+        </div>
+        {% endif %}
+    </div>
     <!-- Historial de monitoreos -->
     <div class="card card-historial">
         <div class="historial-header">

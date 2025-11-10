@@ -131,8 +131,6 @@ class MonitoreoPlanta(models.Model):
         null=True,
         help_text="Tus observaciones en este monitoreo"
     )
-    foto = models.ImageField(upload_to='monitoreos/', blank=True, null=True)
-
     # Metadata
     fecha_monitoreo = models.DateTimeField(auto_now_add=True)
 
@@ -274,3 +272,6 @@ class ConsejoCuidado(models.Model):
             'dificil': 'preocupado'
         }
         return icons.get(self.dificultad, 'pensativo')
+    
+
+    

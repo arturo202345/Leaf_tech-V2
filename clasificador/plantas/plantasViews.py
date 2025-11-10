@@ -43,7 +43,7 @@ def detalle_planta(request, planta_id):
         id=planta_id,
         usuario=request.user
     )
-
+    
     # Obtener historial de monitoreos (últimos 20)
     monitoreos = planta.monitoreos.all().order_by('-fecha_monitoreo')[:20]
 
@@ -51,6 +51,7 @@ def detalle_planta(request, planta_id):
         'planta': planta,
         'monitoreos': monitoreos,
         'total_monitoreos': planta.monitoreos.count(),
+        'consejos':planta.especie.consejo if hasattr(planta.especie, 'consejo') else None
     }
     return render(request, 'planta/detalle_planta.html', context)
 
@@ -171,6 +172,10 @@ def guardar_planta_monitoreo(request):
             porcentaje_rojo=porcentaje_rojo,
             descripcion_estado=descripcion_estado,
         )
+        imagen_capturada = request.POST.get('imagen_capturada', '')
+        if imagen_capturada:
+            mi_planta.img = imagen_capturada
+            mi_planta.save()
 
         return JsonResponse({
             'success': True,
@@ -179,6 +184,7 @@ def guardar_planta_monitoreo(request):
             'created': created,
             'especie_nueva': especie_creada
         })
+    
 
     except Exception as e:
         # Log del error para debugging
