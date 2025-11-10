@@ -3,7 +3,6 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/planta.css' %}">
 <link rel="stylesheet" href="{% static 'css/eliminar.css' %}">
-
 <div class="modal-overlay">
     <div class="modal-card">
         <button type="button" class="modal-close" onclick="window.location.href='{% url 'detalle_planta' planta.id %}'">&times;</button>
@@ -16,10 +15,10 @@
             
             <div class="planta-preview">
                 <div class="preview-image">
-                    {% if planta.ImagenURL %}
-                        <img src="{{ planta.ImagenURL }}" alt="{{ planta.nombre }}">
+                    {% if planta.especie.imagen_url %}
+                        <img src="{{ planta.especie.imagen_url }}" alt="{{ planta.especie.nombre }}">
                     {% else %}
-                        <img src="{% static 'images/placeholder-plant.jpg' %}" alt="{{ planta.nombre }}">
+                        <img src="{% static 'images/default-plant.png' %}" alt="Planta sin imagen">
                     {% endif %}
                 </div>
                 <div class="warning-box">
@@ -44,7 +43,6 @@
         </div>
     </div>
 </div>
-
 <script>
 // Cerrar modal con tecla ESC
 document.addEventListener('keydown', function(e) {
@@ -60,5 +58,4 @@ document.querySelector('.modal-overlay').addEventListener('click', function(e) {
     }
 });
 </script>
-
 {% endblock content %}
